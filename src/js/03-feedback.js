@@ -10,7 +10,6 @@ refs.feedbackForm.addEventListener('input', throttle(onFormInput, 500));
 refs.feedbackForm.addEventListener('submit', onFormSubmit);
 
 const STORAGE_KEY = 'feedback-form-state';
-const localStorageValue = {};
 autofillForm();
 
 function onFormSubmit(evt) {
@@ -25,6 +24,8 @@ function onFormSubmit(evt) {
 }
 
 function onFormInput(event) {
+  const localStorageValue =
+    JSON.parse(localStorage.getItem('feedback-form-state')) || {};
   localStorageValue[event.target.name] = event.target.value;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(localStorageValue));
 }
@@ -36,6 +37,3 @@ function autofillForm() {
     refs.message.value = savedValue.message || '';
   }
 }
-
-
-
