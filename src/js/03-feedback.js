@@ -24,8 +24,7 @@ function onFormSubmit(evt) {
 }
 
 function onFormInput(event) {
-  const localStorageValue =
-    JSON.parse(localStorage.getItem('feedback-form-state')) || {};
+  let localStorageValue = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
   localStorageValue[event.target.name] = event.target.value;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(localStorageValue));
 }
